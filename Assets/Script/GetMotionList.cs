@@ -12,8 +12,14 @@ public class GetMotionList : MonoBehaviour
         {
             Animator animator = other.gameObject.GetComponent<Animator>();
             RuntimeAnimatorController ac = animator.runtimeAnimatorController;
-            motionList.Add(ac.animationClips[0].name);
-            Debug.Log(ac.animationClips[0].name);        
+            int count = 0;
+            while(count < ac.animationClips.Length)
+            {
+                motionList.Add(ac.animationClips[count].name);
+                Debug.Log(ac.animationClips[count].name);
+                count++;
+            }
+                    
 
             Destroy(other.gameObject);
         }
