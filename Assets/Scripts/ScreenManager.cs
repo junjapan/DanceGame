@@ -5,34 +5,29 @@ using UnityEngine.UI;
 
 public class ScreenManager : MonoBehaviour
 {
+   //時間を初期化。まとめて透過率を変更
+    
     float countTime = 0;
-    private static CanvasGroup canvasObj;
- 
-    void Start()
+    public GameObject[] icons;
+ //体に応じてスプライトを出しわける。
+ public void UpdateBody(int body)
     {
-        canvasObj = GameObject.Find("Canvas").GetComponent<CanvasGroup>();
-        canvasObj.alpha = 0.0f;
-        
-    }
-    public static void OpenPanelScript(MonoBehaviour crt,GameObject item)
-    {
-        crt.StartCoroutine(OpenEffect(item));
-    }
-    private static IEnumerator OpenEffect(GameObject item)
-    {
-        item.transform.parent = canvasObj.transform;
-        float y = canvasObj.transform.position.y + 1.0f;
-        item.transform.position = canvasObj.transform.position;
-        for (float i = 0.0f; i < 1.0f; i = i + 0.01f)
+        for(int i = 0; i < icons.Length; i++)
         {
-            canvasObj.alpha = i;
-            yield return null;
+            if (i < body) icons[i].SetActive(true);
+            else icons[i].SetActive(false);
         }
-        canvasObj.alpha = 1.0f;
-      
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+    
+    }
+  
+    
+    
+
+    //タイマーのアップデート
     void Update()
 {
     countTime += Time.deltaTime;
