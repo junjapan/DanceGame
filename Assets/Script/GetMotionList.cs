@@ -5,7 +5,7 @@ using UnityEngine;
 public class GetMotionList : MonoBehaviour
 {
     public List<string> motionList = new List<string>();
-    
+
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Enemy")
@@ -20,7 +20,7 @@ public class GetMotionList : MonoBehaviour
                 count++;
             }
                     
-
+            
             Destroy(other.gameObject);
         }
     }
